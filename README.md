@@ -9,6 +9,8 @@
 
 > The live demo link works **after** GitHub Pages has been enabled and the deployment workflow succeeds. The login is a client-side demonstration; it does not authenticate users against a server.
 
+![Actual browser screenshot of the deployed component studio](docs/screenshots/frontend-dashboard.png)
+
 ## What I built
 
 | Component | Capabilities | Code |
