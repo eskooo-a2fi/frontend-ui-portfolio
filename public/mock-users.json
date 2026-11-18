@@ -1,0 +1,114 @@
+[
+  {
+    "id": 1,
+    "name": "Alex Morgan",
+    "email": "alex.morgan@example.com",
+    "department": "Engineering",
+    "status": "Active",
+    "joined": "2025-02-14"
+  },
+  {
+    "id": 2,
+    "name": "Priya Patel",
+    "email": "priya.patel@example.com",
+    "department": "Design",
+    "status": "Active",
+    "joined": "2025-03-08"
+  },
+  {
+    "id": 3,
+    "name": "Jamie Chen",
+    "email": "jamie.chen@example.com",
+    "department": "Product",
+    "status": "Invited",
+    "joined": "2025-05-19"
+  },
+  {
+    "id": 4,
+    "name": "Taylor Brooks",
+    "email": "taylor.brooks@example.com",
+    "department": "Marketing",
+    "status": "Active",
+    "joined": "2024-12-02"
+  },
+  {
+    "id": 5,
+    "name": "Sam Rivera",
+    "email": "sam.rivera@example.com",
+    "department": "Engineering",
+    "status": "Inactive",
+    "joined": "2025-01-11"
+  },
+  {
+    "id": 6,
+    "name": "Morgan Lee",
+    "email": "morgan.lee@example.com",
+    "department": "Support",
+    "status": "Active",
+    "joined": "2025-04-24"
+  },
+  {
+    "id": 7,
+    "name": "Jordan Walker",
+    "email": "jordan.walker@example.com",
+    "department": "Finance",
+    "status": "Active",
+    "joined": "2025-06-14"
+  },
+  {
+    "id": 8,
+    "name": "Avery Singh",
+    "email": "avery.singh@example.com",
+    "department": "Design",
+    "status": "Invited",
+    "joined": "2025-07-06"
+  },
+  {
+    "id": 9,
+    "name": "Charlie Osei",
+    "email": "charlie.osei@example.com",
+    "department": "Engineering",
+    "status": "Active",
+    "joined": "2025-02-27"
+  },
+  {
+    "id": 10,
+    "name": "Robin Clarke",
+    "email": "robin.clarke@example.com",
+    "department": "Operations",
+    "status": "Active",
+    "joined": "2025-03-17"
+  },
+  {
+    "id": 11,
+    "name": "Casey Brown",
+    "email": "casey.brown@example.com",
+    "department": "Support",
+    "status": "Inactive",
+    "joined": "2024-11-30"
+  },
+  {
+    "id": 12,
+    "name": "Drew Ahmed",
+    "email": "drew.ahmed@example.com",
+    "department": "Product",
+    "status": "Active",
+    "joined": "2025-01-22"
+  },
+  {
+    "id": 13,
+    "name": "Quinn Parker",
+    "email": "quinn.parker@example.com",
+    "department": "Engineering",
+    "status": "Active",
+    "joined": "2025-07-23"
+  },
+  {
+    "id": 14,
+    "name": "Emery Scott",
+    "email": "emery.scott@example.com",
+    "department": "Operations",
+    "status": "Invited",
+    "joined": "2025-08-02"
+  }
+]
