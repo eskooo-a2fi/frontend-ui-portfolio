@@ -15,7 +15,7 @@ const PAGE_SIZE = 6;
 
 /** Fetching a static JSON resource models the async loading/error lifecycle of a real API. */
 export async function getPeople(signal?: AbortSignal): Promise<Person[]> {
-  const response = await fetch('/mock-users.json', { signal });
+  const response = await fetch(`${import.meta.env.BASE_URL}mock-users.json`, { signal });
   if (!response.ok) throw new Error(`Unable to load records (${response.status})`);
   return (await response.json()) as Person[];
 }

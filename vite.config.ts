@@ -4,6 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  base: process.env.GITHUB_PAGES === 'true' ? '/frontend-ui-portfolio/' : '/',
   test: {
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],
