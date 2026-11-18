@@ -13,11 +13,38 @@ type SortKey = keyof Pick<Person, 'name' | 'email' | 'department' | 'status' | '
 type SortDirection = 'asc' | 'desc';
 const PAGE_SIZE = 6;
 
-/** Fetching a static JSON resource models the async loading/error lifecycle of a real API. */
+const STATUSES = new Set<Person['status']>(['Active', 'Invited', 'Inactive']);
+
+function isPerson(value: unknown): value is Person {
+  if (typeof value !== 'object' || value === null) return false;
+  const person = value as Record<string, unknown>;
+  return Number.isSafeInteger(person.id) &&
+    typeof person.name === 'string' &&
+    typeof person.email === 'string' &&
+    typeof person.department === 'string' &&
+    typeof person.joined === 'string' &&
+    /^\d{4}-\d{2}-\d{2}$/.test(person.joined) &&
+    STATUSES.has(person.status as Person['status']);
+}
+
 export async function getPeople(signal?: AbortSignal): Promise<Person[]> {
   const response = await fetch(`${import.meta.env.BASE_URL}mock-users.json`, { signal });
-  if (!response.ok) throw new Error(`Unable to load records (${response.status})`);
-  return (await response.json()) as Person[];
+  if (!response.ok) throw new Error('The directory is temporarily unavailable.');
+
+  let payload: unknown;
+  try {
+    payload = await response.json();
+  } catch {
+    throw new Error('The directory returned invalid data.');
+  }
+
+  if (!Array.isArray(payload) || !payload.every(isPerson)) {
+    throw new Error('The directory returned invalid data.');
+  }
+
+  const ids = new Set(payload.map(person => person.id));
+  if (ids.size !== payload.length) throw new Error('The directory contains duplicate record IDs.');
+  return payload;
 }
 
 export function DataTable({ load = getPeople }: { load?: (signal?: AbortSignal) => Promise<Person[]> }) {
@@ -34,8 +61,8 @@ export function DataTable({ load = getPeople }: { load?: (signal?: AbortSignal) 
     const controller = new AbortController();
     setLoading(true);
     setError('');
-    load(controller.signal).then(data => { if (!controller.signal.aborted) setRows(data); }).catch(e => {
-      if (!controller.signal.aborted) setError(e instanceof Error ? e.message : 'Unable to load records.');
+    load(controller.signal).then(data => { if (!controller.signal.aborted) setRows(data); }).catch(() => {
+      if (!controller.signal.aborted) setError('Unable to load the directory. Please retry.');
     }).finally(() => { if (!controller.signal.aborted) setLoading(false); });
     return () => controller.abort();
   }, [load, reload]);

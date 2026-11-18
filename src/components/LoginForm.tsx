@@ -7,7 +7,6 @@ export type LoginFormProps = { onSubmit?: (credentials: LoginCredentials) => Pro
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-/** A UI demo, not a real authentication system. Credentials are never stored or logged. */
 export function LoginForm({ onSubmit }: LoginFormProps) {
   const formId = useId();
   const [email, setEmail] = useState('');
@@ -18,6 +17,7 @@ export function LoginForm({ onSubmit }: LoginFormProps) {
   const [submitted, setSubmitted] = useState(false);
   const [pending, setPending] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+  const [submitFailed, setSubmitFailed] = useState(false);
 
   const validate = (): Errors => {
     const next: Errors = {};
@@ -39,12 +39,14 @@ export function LoginForm({ onSubmit }: LoginFormProps) {
     setSubmitted(true);
     const next = validate();
     setMessage(null);
+    setSubmitFailed(false);
     if (Object.keys(next).length) return;
     setPending(true);
     try {
       await onSubmit?.({ email: email.trim(), password, remember });
       setMessage('Validation passed. This is a demo; no account was accessed.');
     } catch {
+      setSubmitFailed(true);
       setMessage('Sign-in could not be completed. Please try again.');
     } finally {
       setPending(false);
@@ -54,9 +56,9 @@ export function LoginForm({ onSubmit }: LoginFormProps) {
   return (
     <section aria-labelledby={`${formId}-title`} className="mx-auto w-full max-w-md rounded-[28px] border border-slate-700/70 bg-[#111b30] p-6 shadow-2xl shadow-indigo-950/20 sm:p-9">
       <div className="mb-8 flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-500/15 text-indigo-300"><LockKeyhole aria-hidden="true" size={24} /></div>
-      <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-indigo-300">Secure access</p>
+      <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-indigo-300">Sign-in component demo</p>
       <h2 id={`${formId}-title`} className="text-2xl font-semibold tracking-tight text-white">Welcome back</h2>
-      <p className="mt-2 text-sm leading-relaxed text-slate-400">Sign in to continue to your workspace.</p>
+      <p className="mt-2 text-sm leading-relaxed text-slate-400">Validation and error states in a local UI example.</p>
 
       <form noValidate onSubmit={handleSubmit} className="mt-8 space-y-5">
         <div>
@@ -78,7 +80,7 @@ export function LoginForm({ onSubmit }: LoginFormProps) {
           <input type="checkbox" checked={remember} onChange={e => setRemember(e.target.checked)} className="h-4 w-4 accent-indigo-500" /> Remember me
         </label>
         <button type="submit" disabled={pending} className="flex w-full items-center justify-center gap-2 rounded-xl bg-indigo-500 px-4 py-3.5 text-sm font-semibold text-white transition hover:bg-indigo-400 disabled:opacity-60">{pending ? 'Checking…' : 'Sign in'} <ArrowRight aria-hidden="true" size={18} /></button>
-        {message && <p role="status" aria-live="polite" className="rounded-xl border border-indigo-400/20 bg-indigo-400/10 p-3 text-sm text-indigo-100">{message}</p>}
+        {message && <p role={submitFailed ? "alert" : "status"} aria-live="polite" className="rounded-xl border border-indigo-400/20 bg-indigo-400/10 p-3 text-sm text-indigo-100">{message}</p>}
       </form>
       <div className="mt-7 flex items-center gap-2 border-t border-slate-800 pt-5 text-xs text-slate-500"><ShieldCheck size={16} aria-hidden="true" /> Accessible validation · local UI demonstration</div>
     </section>

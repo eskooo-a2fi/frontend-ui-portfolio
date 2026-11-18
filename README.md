@@ -56,3 +56,16 @@ The checked-in [GitHub Pages workflow](.github/workflows/deploy-pages.yml) build
 - Add keyboard focus trapping in the mobile navigation drawer.
 - Add axe-core accessibility checks and end-to-end browser coverage.
 - Replace the JSON fixture with a real paginated API and connect the login form to an appropriately secured authentication service.
+
+## Evidence and edge cases
+
+**CV keywords demonstrated:** **React**, **TypeScript**, **JavaScript**, **HTML5**, **CSS3**, **Responsive Design**, **Accessibility (WCAG)**, **SVG** icons, **Debugging**, **Frontend Testing**, **GitHub**, and **UI/UX**. For **AI Code Review** evidence, see the separate [AI evaluation portfolio](https://github.com/eskooo-a2fi/ai-code-review-portfolio).
+
+- **Network failure and retry:** the directory shows a recoverable error when loading fails.
+- **Invalid API response:** `getPeople` checks record types and rejects duplicate IDs rather than rendering malformed rows.
+- **Empty results and pagination:** the table keeps page bounds valid and disables navigation on an empty dataset.
+- **Login submission failure:** the form announces the error without displaying internal details or retaining credentials.
+
+Run `npm test` and `npm run build`; the additional boundary tests are in `DataTable.edge.test.tsx` and `LoginForm.edge.test.tsx`.
+
+**Not shown here:** translation from a specific supplied mockup, **Canvas** rendering, or a merged pull request. Those CV skills need their own evidence rather than being implied by this component demo.

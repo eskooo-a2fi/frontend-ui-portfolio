@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { BarChart3, Bell, ChevronLeft, ChevronRight, CircleHelp, FolderKanban, LayoutDashboard, LogOut, Menu, Settings2, X } from 'lucide-react';
+import { BarChart3, Bell, ChevronLeft, ChevronRight, CircleHelp, FolderKanban, LayoutDashboard, Menu, Settings2, X } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
 type NavItem = { label: string; icon: LucideIcon; id: string };
@@ -64,7 +64,6 @@ export function DashboardSidebar({ active, onNavigate }: DashboardSidebarProps) 
           <div className="flex items-center gap-3 rounded-xl border border-white/8 bg-white/3 p-2.5">
             <div aria-hidden="true" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-violet-400 to-indigo-600 text-sm font-bold text-white">JD</div>
             <div className={`${collapsed ? 'lg:sr-only' : ''} min-w-0 flex-1`}><p className="truncate text-xs font-semibold text-white">Jordan Davis</p><p className="truncate text-[11px] text-slate-500">Demo profile</p></div>
-            <LogOut aria-hidden="true" size={16} className={`${collapsed ? 'lg:hidden' : ''} text-slate-600`} />
           </div>
         </div>
       </aside>
